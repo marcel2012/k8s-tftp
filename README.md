@@ -1,8 +1,8 @@
 # k8s-tftp 
 ### With GET and PUT support
 Tftp server which can running on Kubernetes.
-Repository: https://hub.docker.com/r/darkautism/k8s-tftp
-Github: https://github.com/darkautism/k8s-tftp
+Repository: https://hub.docker.com/r/marcel2012/k8s-tftp
+Github: https://github.com/marcel2012/k8s-tftp
 
 ## How to use
 
@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: pxe
-        image: darkautism/k8s-tftp
+        image: marcel2012/k8s-tftp
         ports:
         - containerPort: 69
         volumeMounts:
