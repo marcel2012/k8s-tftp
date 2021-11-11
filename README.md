@@ -1,4 +1,5 @@
-# k8s-tftp
+# k8s-tftp 
+### With GET and PUT support
 Tftp server which can running on Kubernetes.
 Repository: https://hub.docker.com/r/darkautism/k8s-tftp
 Github: https://github.com/darkautism/k8s-tftp
