@@ -1,12 +1,45 @@
 # k8s-tftp 
 ### With GET and PUT support
-Tftp server which can running on Kubernetes.
+Multiarch TFTP server which can running on Kubernetes.
+
 Repository: https://hub.docker.com/r/marcel2012/k8s-tftp
+
 Github: https://github.com/marcel2012/k8s-tftp
 
 ## How to use
 
-Create a tftp.yaml like this
+### Docker Compose
+
+Create `docker-compose.yaml` file
+
+```yaml
+version: '3.8'
+
+services:
+  app:
+    image: marcel2012/k8s-tftp:latest
+    ports:
+      - "69:69/udp"
+    volumes:
+      - storage:/tftpboot
+
+volumes:
+  storage:
+```
+
+Run and test
+
+```shell
+% docker compose up -d
+% tftp          
+tftp> connect 127.0.0.1
+tftp> put file.txt
+tftp> get file.txt
+```
+
+### Kubernetes
+
+Create a `tftp.yaml` like this
 
 ``` yaml
 apiVersion: apps/v1

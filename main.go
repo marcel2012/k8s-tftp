@@ -1,10 +1,10 @@
 package main
 
 import (
-	"pack.ag/tftp"
+	"io"
 	"log"
 	"os"
-	"io"
+	"pack.ag/tftp"
 )
 
 func main() {
@@ -16,13 +16,13 @@ func main() {
 	writeHandler := tftp.WriteHandlerFunc(ReceiveTFTP)
 	s.ReadHandler(readHandler)
 	s.WriteHandler(writeHandler)
-	s. ListenAndServe()
-	select{}
+	s.ListenAndServe()
+	select {}
 
 }
 
 func proxyTFTP(w tftp.ReadRequest) {
-	log.Printf("[%s] GET %s\n", w.Addr().IP.String(), w.Name() )
+	log.Printf("[%s] GET %s\n", w.Addr().IP.String(), w.Name())
 	file, err := os.Open("/tftpboot/" + w.Name()) // For read access.
 	if err != nil {
 		log.Println(err)
@@ -44,7 +44,7 @@ func ReceiveTFTP(w tftp.WriteRequest) {
 		return
 	}
 
-	if err := os.WriteFile("/tftpboot/" + w.Name(), data, 0644); err != nil {
+	if err := os.WriteFile("/tftpboot/"+w.Name(), data, 0644); err != nil {
 		log.Println(err)
 		return
 	}
