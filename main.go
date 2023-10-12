@@ -16,9 +16,12 @@ func main() {
 	writeHandler := tftp.WriteHandlerFunc(ReceiveTFTP)
 	s.ReadHandler(readHandler)
 	s.WriteHandler(writeHandler)
-	s.ListenAndServe()
+	err = s.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Listening on port 69 UDP")
 	select {}
-
 }
 
 func proxyTFTP(w tftp.ReadRequest) {
@@ -29,7 +32,12 @@ func proxyTFTP(w tftp.ReadRequest) {
 		w.WriteError(tftp.ErrCodeFileNotFound, err.Error())
 		return
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+			log.Println(err)
+		}
+	}(file)
 
 	if _, err := io.Copy(w, file); err != nil {
 		log.Println(err)
