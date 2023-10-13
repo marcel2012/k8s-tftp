@@ -1,6 +1,7 @@
 # k8s-tftp
-[![build-ghcr](https://github.com/marcel2012/k8s-tftp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/marcel2012/k8s-tftp/actions/workflows/docker-image.yml)
-[![build-dockerhub](https://github.com/marcel2012/k8s-tftp/actions/workflows/dockerhub-image.yml/badge.svg)](https://github.com/marcel2012/k8s-tftp/actions/workflows/dockerhub-image.yml)
+[![build-ghcr](https://github.com/marcel2012/k8s-tftp/actions/workflows/docker-image.yml/badge.svg?branch=master)](https://github.com/marcel2012/k8s-tftp/actions/workflows/docker-image.yml)
+[![build-dockerhub](https://github.com/marcel2012/k8s-tftp/actions/workflows/dockerhub-image.yml/badge.svg?branch=master)](https://github.com/marcel2012/k8s-tftp/actions/workflows/dockerhub-image.yml)
+[![CodeQL](https://github.com/marcel2012/k8s-tftp/actions/workflows/github-code-scanning/codeql/badge.svg?branch=master)](https://github.com/marcel2012/k8s-tftp/actions/workflows/github-code-scanning/codeql)
 ### With GET and PUT support
 Multiarch TFTP server which can run on Kubernetes.
 
