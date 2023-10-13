@@ -1,12 +1,29 @@
-# k8s-tftp 
+# k8s-tftp
+[![build-ghcr](https://github.com/marcel2012/k8s-tftp/actions/workflows/docker-image.yml/badge.svg)](https://github.com/marcel2012/k8s-tftp/actions/workflows/docker-image.yml)
+[![build-dockerhub](https://github.com/marcel2012/k8s-tftp/actions/workflows/dockerhub-image.yml/badge.svg)](https://github.com/marcel2012/k8s-tftp/actions/workflows/dockerhub-image.yml)
 ### With GET and PUT support
-Multiarch TFTP server which can running on Kubernetes.
+Multiarch TFTP server which can run on Kubernetes.
 
 Repository: https://hub.docker.com/r/marcel2012/k8s-tftp
 
 Github: https://github.com/marcel2012/k8s-tftp
 
 ## How to use
+
+### Docker 
+
+```shell
+docker run -p 69:69/udp -v ./volume:/tftpboot marcel2012/k8s-tftp:latest
+```
+
+Test
+
+```shell
+% tftp          
+tftp> connect 127.0.0.1
+tftp> put file.txt
+tftp> get file.txt
+```
 
 ### Docker Compose
 
