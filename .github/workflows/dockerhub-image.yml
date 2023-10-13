@@ -1,6 +1,8 @@
 name: build-dockerhub
 
 on:
+  schedule:
+    - cron:  '6 6 * * 6'
   push:
     branches:
       - "master"
