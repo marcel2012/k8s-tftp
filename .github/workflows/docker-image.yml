@@ -1,4 +1,4 @@
-name: ci
+name: build-ghcr
 
 on:
   push:
