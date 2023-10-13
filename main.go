@@ -16,11 +16,11 @@ func main() {
 	writeHandler := tftp.WriteHandlerFunc(ReceiveTFTP)
 	s.ReadHandler(readHandler)
 	s.WriteHandler(writeHandler)
+	log.Println("Listening on port 69 UDP")
 	err = s.ListenAndServe()
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Listening on port 69 UDP")
 	select {}
 }
 
