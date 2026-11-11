@@ -31,8 +31,6 @@ tftp> get file.txt
 Create `docker-compose.yaml` file
 
 ```yaml
-version: '3.8'
-
 services:
   app:
     image: marcel2012/k8s-tftp:latest

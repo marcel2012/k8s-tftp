@@ -1,4 +1,4 @@
-FROM golang:latest AS build
+FROM golang:1.27.4 AS build
 
 WORKDIR /build
 
@@ -17,5 +17,7 @@ RUN CGO_ENABLED=0 GOOS="${TARGETOS:-linux}" GOARCH="${TARGETARCH:-amd64}" GOARM=
 FROM scratch
 
 COPY --from=build /build/tftp /
+
+EXPOSE 69/udp
 
 ENTRYPOINT ["/tftp"]
