@@ -4,6 +4,7 @@ import (
 	"io"
 	"log"
 	"os"
+
 	"pack.ag/tftp"
 )
 
@@ -12,6 +13,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer func() {
+		_ = s.Close()
+	}()
 	readHandler := tftp.ReadHandlerFunc(proxyTFTP)
 	writeHandler := tftp.WriteHandlerFunc(ReceiveTFTP)
 	s.ReadHandler(readHandler)
@@ -26,7 +30,7 @@ func main() {
 
 func proxyTFTP(w tftp.ReadRequest) {
 	log.Printf("[%s] GET %s\n", w.Addr().IP.String(), w.Name())
-	file, err := os.Open("/tftpboot/" + w.Name()) // For read access.
+	file, err := os.OpenInRoot("/tftpboot", w.Name()) // For read access.
 	if err != nil {
 		log.Println(err)
 		w.WriteError(tftp.ErrCodeFileNotFound, err.Error())
@@ -51,8 +55,15 @@ func ReceiveTFTP(w tftp.WriteRequest) {
 		log.Println(err)
 		return
 	}
-
-	if err := os.WriteFile("/tftpboot/"+w.Name(), data, 0644); err != nil {
+	root, err := os.OpenRoot("/tftpboot")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	defer func() {
+		_ = root.Close()
+	}()
+	if err := root.WriteFile(w.Name(), data, 0644); err != nil {
 		log.Println(err)
 		return
 	}
