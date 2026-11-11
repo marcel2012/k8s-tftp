@@ -1,4 +1,4 @@
-module github.com/darkautism/k8s-tftp
+module github.com/marcel2012/k8s-tftp
 
 go 1.27.4
 
